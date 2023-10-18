@@ -21,7 +21,7 @@
     <main class="main">
         <section>
             <h1>Add new entry:</h1>
-            <form class="form" action="/entry" method="post">
+            <form class="form" action="/" method="post">
                 <p class="form__input">
                     <label for="sample-field" class="form__label">Entry Cotents:</label>
                     <textarea class="form__textarea" name="content" id="entry"></textarea>
@@ -34,13 +34,15 @@
         </section>
         <section>
             <h1>Recent Posts</h1>
-            <article class="entry">
-                <div>
-                    <h2 class="entry__title">A bit of a chill day today</h2>
-                    <time class="entry__date" datetime="13-10-2023"> | October 13</time>
-                </div>
-                <p class="entry__content">today was a chill day of programming, a lot of learning</p>
-            </article>
+            {% for entry in entries %}
+                <article class="entry">
+                    <div>
+                        <h2 class="entry__title">{{entry[0] | truncate(30, true)}}</h2>
+                        <time class="entry__date" datetime="{{entry[1]}}"> | {{entry[2]}}</time>
+                    </div>
+                    <p class="entry__content">{{entry[0]}}</p>
+                </article>
+            {% endfor %}
         </section>
     </main>
     <footer class="footer">
