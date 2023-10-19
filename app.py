@@ -32,5 +32,6 @@ def create_app():
                  datetime.datetime.strptime(entry["date"], "%Y-%m-%d").strftime("%b %d"))
                 for entry in app.db.entries.find({})
             ]
+        entries_with_date = list(reversed(entries_with_date))
         return render_template("home.html", entries=entries_with_date)
     return app
